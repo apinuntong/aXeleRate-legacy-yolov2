@@ -10,7 +10,8 @@ from tensorflow.python.lib.io import file_io
 
 from .blocks_args import BLOCKS_ARGS
 from tensorflow.python.keras.utils.generic_utils import get_custom_objects
-from tensorflow.python.keras_applications.imagenet_utils import _obtain_input_shape
+from keras_applications.imagenet_utils import _obtain_input_shape
+# from tensorflow.python.keras_applications.imagenet_utils import _obtain_input_shape
 # from tensorflow.python.keras.applications import keras_applications
 # from tensorflow.python.keras.layers import Activation
 # from tensorflow.python.keras.backend import sigmoid
