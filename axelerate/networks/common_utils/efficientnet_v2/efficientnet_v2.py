@@ -8,7 +8,7 @@ from tensorflow.python.keras import backend
 from tensorflow.python.keras.utils import layer_utils
 from tensorflow.python.lib.io import file_io
 
-from efficientnet_v2.blocks_args import BLOCKS_ARGS
+from .efficientnet_v2.blocks_args import BLOCKS_ARGS
 from tensorflow.python.keras.utils.generic_utils import get_custom_objects
 from tensorflow.python.keras.applications import keras_applications
 from tensorflow.python.keras.layers import Activation
