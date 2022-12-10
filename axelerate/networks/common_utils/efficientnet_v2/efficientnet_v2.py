@@ -8,14 +8,16 @@ from tensorflow.python.keras import backend
 from tensorflow.python.keras.utils import layer_utils
 from tensorflow.python.lib.io import file_io
 
-from .efficientnet_v2.blocks_args import BLOCKS_ARGS
+from .blocks_args import BLOCKS_ARGS
 from tensorflow.python.keras.utils.generic_utils import get_custom_objects
 from tensorflow.python.keras.applications import keras_applications
-from tensorflow.python.keras.layers import Activation
-from tensorflow.python.keras.backend import sigmoid
-def swish(x, beta = 1):
-    return (x * sigmoid(beta * x))
-get_custom_objects().update({'swish': Activation(swish)})
+# from tensorflow.python.keras.layers import Activation
+# from tensorflow.python.keras.backend import sigmoid
+# def swish(x, beta = 1):
+#     return (x * sigmoid(beta * x))
+# get_custom_objects().update({'swish': Activation(swish)})
+activation=tf.nn.swish
+
 BASE_WEIGHTS_URL = (
     "https://github.com/sebastian-sz/efficientnet-v2-keras/releases/download/v1.0/"
 )
