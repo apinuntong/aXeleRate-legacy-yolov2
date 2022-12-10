@@ -265,7 +265,7 @@ def visualize_classification_dataset(img_folder, num_imgs = None, img_size=None,
     for filename in image_files_list[0:num_imgs]:
         image = cv2.imread(filename)[...,::-1]
         image = process_image_classification(image, img_size, img_size, augment)
-        cv2.putText(image, os.path.dirname(filename).split('/')[-1], (10,30), font, image.shape[1]/700 , (255, 0, 0), 2)
+        cv2.putText(image, os.path.dirname(filename).split('/')[-1], (10,30), font, image.shape[1]/700 , (255, 0, 0), 2, True)
         plt.figure()
         plt.imshow(image)
         plt.show(block=False)

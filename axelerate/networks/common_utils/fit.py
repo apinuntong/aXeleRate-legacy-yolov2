@@ -126,7 +126,7 @@ def train(model,
                         verbose          = 1,
                         workers          = 4,
                         max_queue_size   = 10,
-                        use_multiprocessing = True)
+                        use_multiprocessing = False)
     except KeyboardInterrupt:
         print("Saving model and copying logs")
         model.save(save_weights_name_ctrlc, overwrite=True, include_optimizer=False)
