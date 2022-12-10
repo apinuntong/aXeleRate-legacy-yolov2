@@ -1,6 +1,6 @@
 """Package with exposed EfficientNet V2 models."""
 
-from .efficientnet_v2.efficientnet_v2 import (
+from .efficientnet_v2 import (
     EfficientNetV2B0,
     EfficientNetV2B1,
     EfficientNetV2B2,
