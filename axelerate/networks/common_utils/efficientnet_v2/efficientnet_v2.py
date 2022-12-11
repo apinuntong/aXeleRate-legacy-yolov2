@@ -13,12 +13,12 @@ from tensorflow.python.keras.utils.generic_utils import get_custom_objects
 from keras_applications.imagenet_utils import _obtain_input_shape
 # from tensorflow.python.keras_applications.imagenet_utils import _obtain_input_shape
 # from tensorflow.python.keras.applications import keras_applications
-# from tensorflow.python.keras.layers import Activation
-# from tensorflow.python.keras.backend import sigmoid
-# def swish(x, beta = 1):
-#     return (x * sigmoid(beta * x))
-# get_custom_objects().update({'swish': Activation(swish)})
-activation=tf.nn.swish
+from tensorflow.python.keras.layers import Activation
+from tensorflow.python.keras.backend import sigmoid
+def swish(x, beta = 1):
+    return (x * sigmoid(beta * x))
+get_custom_objects().update({'swish': Activation(swish)})
+# activation=tf.nn.swish
 
 BASE_WEIGHTS_URL = (
     "https://github.com/sebastian-sz/efficientnet-v2-keras/releases/download/v1.0/"
