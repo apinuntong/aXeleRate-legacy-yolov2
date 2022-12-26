@@ -516,12 +516,16 @@ def EfficientNetV2S(
     pooling=None,
     classes=1000,
     classifier_activation="softmax",
+    width_coefficient=1,
+    depth_coefficient=1,
+    dropout_rate=0.2,
     **kwargs,
 ):
     """Create EfficientNetV2 S variant."""
     return EfficientNetV2(
-        width_coefficient=0.9,
-        depth_coefficient=0.9,
+        width_coefficient=width_coefficient,
+        depth_coefficient=depth_coefficient,
+        dropout_rate=dropout_rate,
         default_size=384,
         model_name="efficientnetv2-s",
         include_top=include_top,
