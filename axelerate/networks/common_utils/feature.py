@@ -301,7 +301,7 @@ class EfficientNetV2SFeature(BaseFeatureExtractor):
     """docstring for ClassName"""
     def __init__(self, input_size, weights):
         input_image = Input(shape=(input_size[0], input_size[1], 3))
-        input_shapes_imagenet = [(384, 384,3)]
+        input_shapes_imagenet = [(384, 384,3),(448, 448,3)]
         input_shape =(384,384,3)
         for item in input_shapes_imagenet:
             if item[0] <= input_size[0]:
@@ -316,7 +316,7 @@ class EfficientNetV2SFeature(BaseFeatureExtractor):
         #         print('Loaded backend weigths: '+weights)
         #         mobilenet.load_weights(weights)
         # EfficientNet = keras_efficientnet_v2.EfficientNetV2S( pretrained=None,input_shape=input_shape,include_top=False, rescale_mode="tf")
-        EfficientNet = EfficientNetV2S(weights=None,input_shape=input_shape,include_top=False) 
+        EfficientNet = EfficientNetV2S(weights=None,input_shape=input_shape,include_top=False,dropout_rate=0.001,width_coefficient = 1.0,depth_coefficient=1.0) 
 
         #x = mobilenet(input_image)
         self.feature_extractor = EfficientNet
