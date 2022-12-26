@@ -520,8 +520,8 @@ def EfficientNetV2S(
 ):
     """Create EfficientNetV2 S variant."""
     return EfficientNetV2(
-        width_coefficient=1.0,
-        depth_coefficient=1.0,
+        width_coefficient=0.9,
+        depth_coefficient=0.9,
         default_size=384,
         model_name="efficientnetv2-s",
         include_top=include_top,
