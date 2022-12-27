@@ -50,6 +50,8 @@ def create_feature_extractor(architecture, input_size, weights = None):
         feature_extractor = ResNet50Feature(input_size, weights)
     elif architecture == 'EfficientNetV2S':
         feature_extractor = EfficientNetV2SFeature(input_size, weights)
+    elif architecture == 'EfficientNetV2S_75':
+        feature_extractor = EfficientNetV2SFeature_75(input_size, weights)
     elif architecture == 'EfficientNetV2B0':
         feature_extractor = EfficientNetV2B0Feature(input_size, weights)
     else:
@@ -317,6 +319,36 @@ class EfficientNetV2SFeature(BaseFeatureExtractor):
         #         mobilenet.load_weights(weights)
         # EfficientNet = keras_efficientnet_v2.EfficientNetV2S( pretrained=None,input_shape=input_shape,include_top=False, rescale_mode="tf")
         EfficientNet = EfficientNetV2S(weights=None,input_shape=input_shape,include_top=False,dropout_rate=0.001,width_coefficient = 1.0,depth_coefficient=1.0) 
+
+        #x = mobilenet(input_image)
+        self.feature_extractor = EfficientNet
+
+    def normalize(self, image):
+        image = image / 255.
+        image = image - 0.5
+        image = image * 2.
+
+        return image
+class EfficientNetV2SFeature_75(BaseFeatureExtractor):
+    """docstring for ClassName"""
+    def __init__(self, input_size, weights):
+        input_image = Input(shape=(input_size[0], input_size[1], 3))
+        input_shapes_imagenet = [(384, 384,3),(448, 448,3)]
+        input_shape =(384,384,3)
+        for item in input_shapes_imagenet:
+            if item[0] <= input_size[0]:
+                input_shape = item
+
+        # if weights == 'imagenet':
+        #     mobilenet = MobileNet(input_shape=input_shape, input_tensor=input_image, alpha = alpha, weights = 'imagenet', include_top=False, backend=tensorflow.keras.backend, layers=tensorflow.keras.layers, models=tensorflow.keras.models, utils=tensorflow.keras.utils)
+        #     print('Successfully loaded imagenet backend weights')
+        # else:
+        #     mobilenet = MobileNet(input_shape=(input_size[0],input_size[1],3),alpha = alpha,depth_multiplier = 1, dropout = 0.001, weights = None, include_top=False, backend=tensorflow.keras.backend, layers=tensorflow.keras.layers,models=tensorflow.keras.models,utils=tensorflow.keras.utils)
+        #     if weights:
+        #         print('Loaded backend weigths: '+weights)
+        #         mobilenet.load_weights(weights)
+        # EfficientNet = keras_efficientnet_v2.EfficientNetV2S( pretrained=None,input_shape=input_shape,include_top=False, rescale_mode="tf")
+        EfficientNet = EfficientNetV2S(weights=None,input_shape=input_shape,include_top=False,dropout_rate=0.001,width_coefficient = 0.75,depth_coefficient=0.75) 
 
         #x = mobilenet(input_image)
         self.feature_extractor = EfficientNet
