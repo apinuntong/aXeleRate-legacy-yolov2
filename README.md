@@ -11,7 +11,7 @@ aXeleRate streamlines training and converting computer vision models to be run o
 
 <table>
   <tr>
-    <td>Standford Dog Breed Classification Dataset NASNetMobile backend + Classifier <a href="https://colab.research.google.com/github/apinuntong/aXeleRate-legacy-yolov2/tree/main/resources/aXeleRate_standford_dog_classifier.ipynb">
+    <td>Standford Dog Breed Classification Dataset NASNetMobile backend + Classifier <a href="https://colab.research.google.com/github/apinuntong/aXeleRate-legacy-yolov2/blob/main/resources/aXeleRate_standford_dog_classifier.ipynb">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a> </td>
      <td>PASCAL-VOC 2012 Object Detection Dataset MobileNet1_0 backend + YOLOv2 <a href="https://colab.research.google.com/github/apinuntong/aXeleRate-legacy-yolov2/tree/main/resources/aXeleRate_pascal20_detector.ipynb">
