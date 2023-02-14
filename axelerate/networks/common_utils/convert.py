@@ -135,7 +135,7 @@ class Converter(object):
         print(result)
         
         encoded_output_path = os.path.join(os.path.dirname(model_path),output_name)
-        encoded_path = os.path.join(cwd,"encoded_"+output_name)
+        encoded_path = os.path.join("/content","encoded_"+output_name)
         shutil.copyfile(encoded_path, encoded_output_path)
         print("end")
 
