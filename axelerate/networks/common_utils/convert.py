@@ -129,7 +129,7 @@ class Converter(object):
         shutil.rmtree(folder_name, ignore_errors=True)
         print(result)
         
-        cmd = './{} "{}"'.format(corgimodel_tool_path,output_path)
+        cmd = '.{} "{}"'.format(corgimodel_tool_path,output_path)
         print(cmd)
         result = run_command(cmd)
         print(result)
