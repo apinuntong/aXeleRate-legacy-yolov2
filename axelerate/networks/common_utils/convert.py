@@ -121,7 +121,7 @@ class Converter(object):
     def convert_k210(self, model_path):
         folder_name = self.k210_dataset_gen()
         output_name = os.path.basename(model_path).split(".")[0]+".kmodel"
-        output_path = os.path.join(os.path.dirname(__file__),output_name)
+        output_path = os.path.join(os.path.dirname(model_path),output_name)
         print(output_path)
         cmd = '{} compile "{}" "{}" -i tflite --weights-quantize-threshold 1000 --dataset-format raw --dataset "{}"'.format(k210_converter_path, model_path, output_path, folder_name)
         print(cmd)
@@ -129,15 +129,15 @@ class Converter(object):
         shutil.rmtree(folder_name, ignore_errors=True)
         print(result)
         
-        cmd = '{} "{}"'.format(corgimodel_tool_path,output_path)
-        print(cmd)
-        result = run_command(cmd)
-        print(result)
+#         cmd = '{} "{}"'.format(corgimodel_tool_path,output_path)
+#         print(cmd)
+#         result = run_command(cmd)
+#         print(result)
         
-        encoded_output_path = os.path.join(os.path.dirname(model_path),output_name)
-        encoded_path = os.path.join("/content","encoded_"+output_name)
-        shutil.copyfile(encoded_path, encoded_output_path)
-        print("end")
+#         encoded_output_path = os.path.join(os.path.dirname(model_path),output_name)
+#         encoded_path = os.path.join("/content","encoded_"+output_name)
+#         shutil.copyfile(encoded_path, encoded_output_path)
+#         print("end")
 
     def convert_ir(self, model_path, model_layers):
         input_model = os.path.join(model_path.split(".")[0], "saved_model.pb")
