@@ -406,7 +406,7 @@ def centroid_box_iou(box1, box2):
     return float(intersect) / union
 
 def to_minmax(centroid_boxes):
-    centroid_boxes = centroid_boxes.astype(np.float)
+    centroid_boxes = centroid_boxes.astype(np.float32)
     minmax_boxes = np.zeros_like(centroid_boxes)
     
     cx = centroid_boxes[:,0]

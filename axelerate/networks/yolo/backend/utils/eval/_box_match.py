@@ -118,7 +118,7 @@ class BoxMatcher(object):
             As = (x2 - x1 + 1) * (y2 - y1 + 1)
             B = (x2_gt - x1_gt + 1) * (y2_gt - y1_gt + 1)
             
-            label_score = (labels == truth_label).astype(np.float)
+            label_score = (labels == truth_label).astype(np.float32)
             
             ious = label_score * intersections.astype(float) / (As + B -intersections)
             ious_for_each_gt.append(ious)
@@ -132,13 +132,13 @@ if __name__ == "__main__":
     labels = np.array([1,2,3,4])
     label = np.array([4])
     expected = np.array([0, 0, 0, 1])
-    label_score = (labels == label).astype(np.float)
+    label_score = (labels == label).astype(np.float32)
     print(label_score)
     
     
     labels = np.array(["a","bb","a","cc"])
     label = np.array(["cc"])
-    label_score = (labels == label).astype(np.float)
+    label_score = (labels == label).astype(np.float32)
     print(label_score)
     
     
