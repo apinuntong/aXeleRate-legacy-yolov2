@@ -88,7 +88,7 @@ class YOLO(object):
             minmax_boxes[:,2] *= width
             minmax_boxes[:,1] *= height
             minmax_boxes[:,3] *= height
-            return minmax_boxes.astype(np.int)
+            return minmax_boxes.astype(np.int32)
 
         start_time = time.time()
         netout = self._yolo_network.forward(image)
