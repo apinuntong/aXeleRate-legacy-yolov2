@@ -117,16 +117,28 @@ def train(model,
 
     # 4. training
     try:
-        model.fit_generator(generator = train_batch_gen,
-                        steps_per_epoch  = len(train_batch_gen), 
-                        epochs           = nb_epoch,
-                        validation_data  = valid_batch_gen,
-                        validation_steps = len(valid_batch_gen),
-                        callbacks        = callbacks,                        
-                        verbose          = 1,
-                        workers          = 4,
-                        max_queue_size   = 10,
-                        use_multiprocessing = False)
+         model.fit(
+             x=train_batch_gen,                 # Use 'x' instead of 'generator'
+             steps_per_epoch=len(train_batch_gen), 
+             epochs=nb_epoch,
+             validation_data=valid_batch_gen,
+             validation_steps=len(valid_batch_gen),
+             callbacks=callbacks,
+             verbose=1,
+             workers=4,
+             max_queue_size=10,
+             use_multiprocessing=False
+         )
+        # model.fit_generator(generator = train_batch_gen,
+        #                 steps_per_epoch  = len(train_batch_gen), 
+        #                 epochs           = nb_epoch,
+        #                 validation_data  = valid_batch_gen,
+        #                 validation_steps = len(valid_batch_gen),
+        #                 callbacks        = callbacks,                        
+        #                 verbose          = 1,
+        #                 workers          = 4,
+        #                 max_queue_size   = 10,
+        #                 use_multiprocessing = False)
     except KeyboardInterrupt:
         print("Saving model and copying logs")
         model.save(save_weights_name_ctrlc, overwrite=True, include_optimizer=False)
