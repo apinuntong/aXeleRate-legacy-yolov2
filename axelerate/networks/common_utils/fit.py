@@ -42,9 +42,9 @@ def train(model,
     basename = network.__class__.__name__ + "_best_"+ metrics
     print('Current training session folder is {}'.format(path))
     os.makedirs(path)
-    save_weights_name = os.path.join(path, basename + '.h5')
+    save_weights_name = os.path.join(path, basename + '.keras')
     save_plot_name = os.path.join(path, basename + '.jpg')
-    save_weights_name_ctrlc = os.path.join(path, basename + '_ctrlc.h5')
+    save_weights_name_ctrlc = os.path.join(path, basename + '_ctrlc.keras')
     print('\n')
 
     # 1 Freeze layers
