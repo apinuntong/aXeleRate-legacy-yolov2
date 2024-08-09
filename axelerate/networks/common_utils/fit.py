@@ -124,9 +124,7 @@ def train(model,
              validation_data=valid_batch_gen,
              validation_steps=len(valid_batch_gen),
              callbacks=callbacks,
-             verbose=1,
-             max_queue_size=10,
-             use_multiprocessing=False
+             verbose=1
          )
         # model.fit_generator(generator = train_batch_gen,
         #                 steps_per_epoch  = len(train_batch_gen), 
