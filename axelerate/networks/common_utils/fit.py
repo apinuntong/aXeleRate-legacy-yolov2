@@ -90,7 +90,9 @@ def train(model,
                                  monitor=metrics, 
                                  verbose=1, 
                                  save_best_only=True, 
-                                 mode='auto')
+                                 mode='auto',
+                                 save_freq='epoch',
+                                 save_format='h5')
                                  
     reduce_lr = ReduceLROnPlateau(monitor=metrics, factor=0.2,
                               patience=10, min_lr=0.00001,verbose=1)
