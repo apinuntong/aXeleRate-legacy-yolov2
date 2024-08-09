@@ -42,9 +42,9 @@ def train(model,
     basename = network.__class__.__name__ + "_best_"+ metrics
     print('Current training session folder is {}'.format(path))
     os.makedirs(path)
-    save_weights_name = os.path.join(path, basename + '.keras')
+    save_weights_name = os.path.join(path, basename + '.h5')
     save_plot_name = os.path.join(path, basename + '.jpg')
-    save_weights_name_ctrlc = os.path.join(path, basename + '_ctrlc.keras')
+    save_weights_name_ctrlc = os.path.join(path, basename + '_ctrlc.h5')
     print('\n')
 
     # 1 Freeze layers
@@ -69,7 +69,7 @@ def train(model,
         print("    ", fixed_layers)
 
     # 2 create optimizer
-    optimizer = Adam(learning_rate=learning_rate, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+    optimizer = Adam(lr=learning_rate, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 
     # 3. create loss function
     model.compile(loss=loss_func, optimizer=optimizer, metrics=metrics_dict[metrics])
@@ -90,8 +90,8 @@ def train(model,
                                  monitor=metrics, 
                                  verbose=1, 
                                  save_best_only=True, 
-                                 mode='auto',
-                                 save_freq='epoch')
+                                 mode='auto', 
+                                 period=1)
                                  
     reduce_lr = ReduceLROnPlateau(monitor=metrics, factor=0.2,
                               patience=10, min_lr=0.00001,verbose=1)
@@ -117,25 +117,16 @@ def train(model,
 
     # 4. training
     try:
-         model.fit(
-             x=train_batch_gen,                 # Use 'x' instead of 'generator'
-             steps_per_epoch=len(train_batch_gen), 
-             epochs=nb_epoch,
-             validation_data=valid_batch_gen,
-             validation_steps=len(valid_batch_gen),
-             callbacks=callbacks,
-             verbose=1
-         )
-        # model.fit_generator(generator = train_batch_gen,
-        #                 steps_per_epoch  = len(train_batch_gen), 
-        #                 epochs           = nb_epoch,
-        #                 validation_data  = valid_batch_gen,
-        #                 validation_steps = len(valid_batch_gen),
-        #                 callbacks        = callbacks,                        
-        #                 verbose          = 1,
-        #                 workers          = 4,
-        #                 max_queue_size   = 10,
-        #                 use_multiprocessing = False)
+        model.fit_generator(generator = train_batch_gen,
+                        steps_per_epoch  = len(train_batch_gen), 
+                        epochs           = nb_epoch,
+                        validation_data  = valid_batch_gen,
+                        validation_steps = len(valid_batch_gen),
+                        callbacks        = callbacks,                        
+                        verbose          = 1,
+                        workers          = 4,
+                        max_queue_size   = 10,
+                        use_multiprocessing = False)
     except KeyboardInterrupt:
         print("Saving model and copying logs")
         model.save(save_weights_name_ctrlc, overwrite=True, include_optimizer=False)
@@ -151,4 +142,3 @@ def _print_time(process_time):
         print("{:d}-seconds to train".format(int(process_time)))
     else:
         print("{:d}-mins to train".format(int(process_time/60)))
-
