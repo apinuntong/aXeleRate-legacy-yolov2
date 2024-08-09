@@ -125,7 +125,6 @@ def train(model,
              validation_steps=len(valid_batch_gen),
              callbacks=callbacks,
              verbose=1,
-             workers=4,
              max_queue_size=10,
              use_multiprocessing=False
          )
