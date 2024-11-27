@@ -82,7 +82,7 @@ class BatchGenerator(Sequence):
                 annotation.append(labels[j])
                 annotations.append(annotation)
             anns_list.append(np.array(annotations))
-        return imgs_list, np.array(anns_list)
+        return imgs_list, np.array(anns_list,dtype=object)
 
 
     def __getitem__(self, idx):

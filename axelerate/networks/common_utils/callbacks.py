@@ -107,4 +107,3 @@ class WarmUpCosineDecayScheduler(keras.callbacks.Callback):
         K.set_value(self.model.optimizer.lr, self.current_lr)
         if self.verbose ==2:
             print('\nBatch %05d: setting learning rate to %s.' % (self.global_step + 1, self.current_lr))
-

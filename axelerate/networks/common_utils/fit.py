@@ -142,4 +142,3 @@ def _print_time(process_time):
         print("{:d}-seconds to train".format(int(process_time)))
     else:
         print("{:d}-mins to train".format(int(process_time/60)))
-

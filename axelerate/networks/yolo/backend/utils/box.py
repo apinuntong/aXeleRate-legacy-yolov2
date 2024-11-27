@@ -137,7 +137,7 @@ def to_centroid(minmax_boxes):
     centroid_boxes: [[120. 160.  40.  80.]]
     """
     #minmax_boxes = np.asarray([[100, 120, 140, 200]])
-    minmax_boxes = minmax_boxes.astype(np.float)
+    minmax_boxes = minmax_boxes.astype(np.float32)
     centroid_boxes = np.zeros_like(minmax_boxes)
     
     x1 = minmax_boxes[:,0]
@@ -152,7 +152,7 @@ def to_centroid(minmax_boxes):
     return centroid_boxes
 
 def to_minmax(centroid_boxes):
-    centroid_boxes = centroid_boxes.astype(np.float)
+    centroid_boxes = centroid_boxes.astype(np.float32)
     minmax_boxes = np.zeros_like(centroid_boxes)
     
     cx = centroid_boxes[:,0]
